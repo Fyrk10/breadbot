@@ -39,4 +39,28 @@ async def server(ctx):
 
     await ctx.send(embed=embed)
 
-Client.run("TOKEN_HERE")
+@Client.command()
+async def ip(ctx):
+    embed = discord.Embed(
+    title = "BreadMC Server IP address",
+    description = "IP address: **breadmc.com**",
+    colour=discord.Colour.orange(),
+    )
+
+    embed.set_footer(text="*If you are experiencing connection issues, use: 198.245.51.12")
+
+    await ctx.send(embed=embed )
+
+@Client.command()
+async def map(ctx):
+    embed = discord.Embed(
+    title = "BreadMC Dynmap",
+    description = "View the server's official Dynmap by clicking [**here**](http://map.breadmc.com/ 'map.breadmc.com').",
+    colour=discord.Colour.orange(),
+    )
+
+    embed.set_footer(text='#DZ36 for admin')
+
+    await ctx.send(embed=embed )
+
+Client.run("TOKEN")
