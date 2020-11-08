@@ -1,2 +1,2 @@
 # breadbot
-This bot is used to see in real time players in a minecraft server
+A Discord bot used to see online players in a Minecraft server.
