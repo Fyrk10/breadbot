@@ -32,7 +32,7 @@ async def server(ctx):
             playerzzz += player + " "
 
         embed.add_field(name="Online Players: " + str(len(Heads())), value=playerzzz, inline="False")
-        embed.set_footer(text='#DZ36 for admin')
+        embed.set_footer(text="I don't know what to put here anymore DZ36 is kinda admin.")
     else:
         embed.add_field(name="Online Players: 0" , value="Nobody is here...", inline="False")
 
@@ -47,20 +47,25 @@ async def ip(ctx):
     colour=discord.Colour.orange(),
     )
 
-    embed.set_footer(text="*If you are experiencing connection issues, use: 198.245.51.12")
-
     await ctx.send(embed=embed )
+
 
 @Client.command()
-async def map(ctx):
+async def poll(ctx, *message):
+    deletedmesssage = await ctx.channel.fetch_message(int(ctx.channel.last_message_id))
+    author = str(deletedmesssage.author)
+    await deletedmesssage.delete()
     embed = discord.Embed(
-    title = "BreadMC Dynmap",
-    description = "View the server's official Dynmap by clicking [**here**](http://map.breadmc.com/ 'map.breadmc.com').",
-    colour=discord.Colour.orange(),
+        title = str(message).replace(",","").replace("(", "").replace(")", "").replace("'", "")    ,
+        description = "React with an emote to vote!",
+        colouFr = discord.Colour.orange(),
     )
-
-    embed.set_footer(text='#DZ36 for admin')
-
-    await ctx.send(embed=embed )
+    await ctx.send("@everyone")
+    embed.set_footer(text=" Poll created by: " + author)
+    await ctx.send(embed=embed)
+    emojis =["👍", "👎"]
+    message = await ctx.channel.fetch_message(int(ctx.channel.last_message_id))
+    for emoji in emojis:
+        await message.add_reaction(emoji=emoji)
 
 Client.run("TOKEN")
